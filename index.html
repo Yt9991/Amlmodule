@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealTrust ERP - AML/CFT Compliance Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e3c72;
+            --secondary-color: #2a5298;
+            --accent-color: #4a89dc;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        /* Navbar */
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: white;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Cards */
+        .feature-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card .card-img-top {
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .feature-card .card-body {
+            padding: 25px;
+        }
+        
+        .feature-card .card-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        /* Dashboard */
+        .dashboard-header {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dashboard-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        /* Stats Cards */
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .stat-card .stat-title {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+        
+        .stat-card .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        /* Compliance Table */
+        .compliance-table {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        
+        .compliance-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-complete {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--success-color);
+        }
+        
+        .status-pending {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: var(--warning-color);
+        }
+        
+        .status-overdue {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: var(--danger-color);
+        }
+        
+        /* Login Page */
+        .login-container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+        
+        .login-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-logo img {
+            height: 60px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        
+        .footer-logo {
+            height: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h5 {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Public Landing Page -->
+    <div id="public-page">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="https://teammindlink2025.github.io/assets/Logo.png" alt="TM Logo">
+                    Singapore Real Estate ERP
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="checklist.html">Submission</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="formsAug2025.html">Forms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showLogin()">Login</a>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-primary ms-3" onclick="showLogin()">Request Demo</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="hero-title">Digital Compliance for Real Estate Professionals</h1>
+                <p class="hero-subtitle">Streamline your AML/CFT compliance processes with our all-in-one ERP solution designed specifically for Singapore's real estate industry.</p>
+                <a href="#features" class="btn btn-light btn-lg me-2">Learn More</a>
+                <a href="#" class="btn btn-outline-light btn-lg" onclick="showLogin()">Get Started</a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="container mb-5">
+            <div class="text-center mb-5">
+                <h2>Key Features</h2>
+                <p class="lead">Everything you need for seamless compliance management</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Dashboard">
+                        <div class="card-body">
+                            <h5 class="card-title">Compliance Tracking Dashboard</h5>
+                            <p class="card-text">Real-time overview of all compliance activities with visual indicators for status and deadlines.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card card">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Transaction Reporting">
+                        <div class="card-body">
+                            <h5 class="card-title">Suspicious Transaction Reporting</h5>
+                            <p class="card-text">Secure, guided workflow for submitting STR reports to authorities with full audit trail.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card card">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Document Storage">
+                        <div class="card-body">
+                            <h5 class="card-title">Secure Document Storage</h5>
+                            <p class="card-text">Bank-grade encryption for all client documents with version control and access logs.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card card">
+                        <img src="https://images.unsplash.com/photo-1434626881859-194d67b2b86f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Regulatory Updates">
+                        <div class="card-body">
+                            <h5 class="card-title">Regulatory News & Updates</h5>
+                            <p class="card-text">Curated feed of MAS and CEA circulars with impact analysis for real estate professionals.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card card">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Training Resources">
+                        <div class="card-body">
+                            <h5 class="card-title">Training Resources</h5>
+                            <p class="card-text">Interactive e-learning modules on AML/CFT requirements with certification tracking.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="Audit Reports">
+                        <div class="card-body">
+                            <h5 class="card-title">Comprehensive Audit Reports</h5>
+                            <p class="card-text">Automated generation of compliance reports for internal review and regulatory submission.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compliance Section -->
+        <section id="compliance" class="container mb-5 py-5 bg-light rounded">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2>AML/CFT Compliance Made Simple</h2>
+                    <p class="lead">Our solution helps real estate agencies comply with Singapore's latest regulations with minimal disruption to daily operations.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Client Due Diligence workflows</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Automated record-keeping</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Risk assessment tools</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Staff training management</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary mt-3" onclick="showLogin()">Request Demo</a>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="img-fluid rounded shadow" alt="Compliance Workflow">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="container mb-5">
+            <div class="text-center mb-5">
+                <h2>Trusted by Singapore's Real Estate Agencies</h2>
+                <p class="lead">Our platform is designed in collaboration with industry professionals</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <i class="fas fa-shield-alt fa-3x mb-3 text-primary"></i>
+                        <h5>Regulatory Compliance</h5>
+                        <p>Aligns with MAS and CEA requirements for AML/CFT in real estate transactions</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 text-center">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <i class="fas fa-clock fa-3x mb-3 text-primary"></i>
+                        <h5>Time Savings</h5>
+                        <p>Reduces compliance workload by up to 70% through automation</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 text-center">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <i class="fas fa-lock fa-3x mb-3 text-primary"></i>
+                        <h5>Data Security</h5>
+                        <p>Enterprise-grade security with regular penetration testing</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <img src="https://teammindlink2025.github.io/assets/Logo.png" alt="TM Logo" class="footer-logo">
+                        <p>Empowering real estate professionals with digital compliance solutions.</p>
+                        <p>© 2025 Team Mindlink. All rights reserved July 2025.</p>
+                    </div>
+                    <div class="col-md-2 col-6 mb-4 mb-md-0">
+                        <h5>Product</h5>
+                        <ul class="footer-links">
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#compliance">Compliance</a></li>
+                            <li><a href="#">Pricing</a></li>
+                            <li><a href="#">Updates</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 col-6 mb-4 mb-md-0">
+                        <h5>Company</h5>
+                        <ul class="footer-links">
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Contact Us</h5>
+                        <p><i class="fas fa-envelope me-2"></i> contact@mindlink.com.sg</p>
+                        <p><i class="fas fa-phone me-2"></i> +65 6835 9991</p>
+                        <p><i class="fas fa-map-marker-alt me-2"></i> Mindlink Business Centre 116 Lorong 2 toa Payoh #01-162 Singapore 310116</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Login Page (Hidden by default) -->
+    <div id="login-page" style="display: none;">
+        <div class="login-container">
+            <div class="login-logo">
+                <img src="https://teammindlink2025.github.io/assets/Logo.png" alt="TM Logo">
+            </div>
+            
+            <div id="login-form">
+                <h3 class="text-center mb-4">Sign In to Your Account</h3>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Email / User ID</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter your email or user ID">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="remember">
+                    <label class="form-check-label" for="remember">Remember me</label>
+                </div>
+                <button class="btn btn-primary w-100 mb-3" onclick="login()">Sign In</button>
+                <div class="text-center">
+                    <a href="#" onclick="showForgotPassword()">Forgot password?</a>
+                </div>
+                <hr class="my-4">
+                <p class="text-center text-muted">Don't have an account? <a href="#" onclick="showRegister()">Request access</a></p>
+            </div>
+            
+            <div id="forgot-password-form" style="display: none;">
+                <h3 class="text-center mb-4">Reset Your Password</h3>
+                <div class="mb-3">
+                    <label for="reset-email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="reset-email" placeholder="Enter your email">
+                </div>
+                <button class="btn btn-primary w-100 mb-3" onclick="resetPassword()">Send Reset Link</button>
+                <div class="text-center">
+                    <a href="#" onclick="showLogin()">Back to login</a>
+                </div>
+            </div>
+            
+            <div id="register-form" style="display: none;">
+                <h3 class="text-center mb-4">Request Access</h3>
+                <div class="mb-3">
+                    <label for="agency-name" class="form-label">Agency Name</label>
+                    <input type="text" class="form-control" id="agency-name" placeholder="Enter your agency name">
+                </div>
+                <div class="mb-3">
+                    <label for="register-email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="register-email" placeholder="Enter your email">
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                </div>
+                <button class="btn btn-primary w-100 mb-3" onclick="requestAccess()">Submit Request</button>
+                <div class="text-center">
+                    <a href="#" onclick="showLogin()">Back to login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page (Hidden by default) -->
+    <div id="dashboard-page" style="display: none;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="https://teammindlink2025.github.io/assets/Logo.png" alt="TM Logo">
+                    Singapore Real Estate ERP
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dashboardNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="dashboardNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#"><i class="fas fa-tachometer-alt me-1"></i> Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-user-shield me-1"></i> KYC</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-file-alt me-1"></i> Reports</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-newspaper me-1"></i> Regulatory Updates</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-graduation-cap me-1"></i> Training</a>
+                        </li>
+                    </ul>
+                    <div class="user-profile">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Profile">
+                        <span class="ms-2">John Tan</span>
+                        <a href="#" class="btn btn-sm btn-outline-secondary ms-3" onclick="logout()"><i class="fas fa-sign-out-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container py-4">
+            <div class="dashboard-header">
+                <h2 class="dashboard-title">AML/CFT Compliance Dashboard</h2>
+                <div class="alert alert-success d-flex align-items-center mb-0" style="padding: 8px 12px;">
+                    <i class="fas fa-check-circle me-2"></i>
+                    <div>Last sync: Today, 10:42 AM</div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-title">Pending KYC Reviews</div>
+                        <div class="stat-value">12</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-title">Completed This Month</div>
+                        <div class="stat-value">47</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-title">Training Completed</div>
+                        <div class="stat-value">83%</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-title">Days to Next Audit</div>
+                        <div class="stat-value">28</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0">Recent Compliance Activities</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="compliance-table table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Client Name</th>
+                                            <th>Transaction</th>
+                                            <th>Due Date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Lee Wei Jian</td>
+                                            <td>Property Purchase - $1.2M</td>
+                                            <td>15 Aug 2025</td>
+                                            <td><span class="status-badge status-pending">Pending Review</span></td>
+                                            <td><a href="#" class="btn btn-sm btn-outline-primary">Review</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tan Mei Ling</td>
+                                            <td>Rental Agreement - $3,500/mo</td>
+                                            <td>10 Aug 2025</td>
+                                            <td><span class="status-badge status-overdue">Overdue</span></td>
+                                            <td><a href="#" class="btn btn-sm btn-outline-primary">Review</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wong Chee Meng</td>
+                                            <td>Property Sale - $2.8M</td>
+                                            <td>5 Aug 2025</td>
+                                            <td><span class="status-badge status-complete">Completed</span></td>
+                                            <td><a href="#" class="btn btn-sm btn-outline-secondary">View</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ng Shi Hui</td>
+                                            <td>Property Purchase - $950K</td>
+                                            <td>20 Aug 2025</td>
+                                            <td><span class="status-badge status-pending">Pending Documents</span></td>
+                                            <td><a href="#" class="btn btn-sm btn-outline-primary">Follow Up</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rajesh Kumar</td>
+                                            <td>Rental Agreement - $4,200/mo</td>
+                                            <td>18 Aug 2025</td>
+                                            <td><span class="status-badge status-pending">In Progress</span></td>
+                                            <td><a href="#" class="btn btn-sm btn-outline-primary">Continue</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0">Regulatory Updates</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex mb-3">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-bullhorn text-primary"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1">New CEA Guidelines</h6>
+                                    <p class="small text-muted mb-0">Updated client due diligence requirements effective 1 Sep 2025</p>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-3">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-exclamation-triangle text-warning"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1">MAS Circular</h6>
+                                    <p class="small text-muted mb-0">Enhanced STR reporting timelines for high-value transactions</p>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-info-circle text-info"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1">Industry Bulletin</h6>
+                                    <p class="small text-muted mb-0">Upcoming AML/CFT training workshop on 25 Aug</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0">Quick Actions</h5>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn btn-outline-primary w-100 mb-2">
+                                <i class="fas fa-user-plus me-2"></i> New Client KYC
+                            </button>
+                            <button class="btn btn-outline-primary w-100 mb-2">
+                                <i class="fas fa-file-upload me-2"></i> Upload Documents
+                            </button>
+                            <button class="btn btn-outline-primary w-100 mb-2">
+                                <i class="fas fa-flag me-2"></i> File STR Report
+                            </button>
+                            <button class="btn btn-outline-primary w-100">
+                                <i class="fas fa-chart-pie me-2"></i> Generate Audit Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simple page navigation functions
+        function showLogin() {
+            document.getElementById('public-page').style.display = 'none';
+            document.getElementById('login-page').style.display = 'block';
+            document.getElementById('dashboard-page').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('forgot-password-form').style.display = 'none';
+            document.getElementById('register-form').style.display = 'none';
+            return false;
+        }
+
+        function showForgotPassword() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('forgot-password-form').style.display = 'block';
+            document.getElementById('register-form').style.display = 'none';
+            return false;
+        }
+
+        function showRegister() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('forgot-password-form').style.display = 'none';
+            document.getElementById('register-form').style.display = 'block';
+            return false;
+        }
+
+        function login() {
+            // Very simple "authentication" for demo purposes
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username && password) {
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('dashboard-page').style.display = 'block';
+            } else {
+                alert('Please enter both username and password');
+            }
+            return false;
+        }
+
+        function resetPassword() {
+            const email = document.getElementById('reset-email').value;
+            if (email) {
+                alert('Password reset link has been sent to ' + email);
+                showLogin();
+            } else {
+                alert('Please enter your email address');
+            }
+            return false;
+        }
+
+        function requestAccess() {
+            const agency = document.getElementById('agency-name').value;
+            const email = document.getElementById('register-email').value;
+            
+            if (agency && email) {
+                alert('Thank you for your interest! Our team will contact you shortly.');
+                showLogin();
+            } else {
+                alert('Please fill in all required fields');
+            }
+            return false;
+        }
+
+        function logout() {
+            document.getElementById('public-page').style.display = 'block';
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('dashboard-page').style.display = 'none';
+            return false;
+        }
+
+        // Initialize with public page visible
+        document.getElementById('public-page').style.display = 'block';
+        document.getElementById('login-page').style.display = 'none';
+        document.getElementById('dashboard-page').style.display = 'none';
+    </script>
+</body>
+</html>

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms | Mindlink Groups</title>
+    <meta name="description" content="Download real estate compliance forms and documents required for property transactions">
+    <meta name="theme-color" content="#231F20">
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWluZGxpbmsgRm9ybXMiLCJzaG9ydF9uYW1lIjoiRm9ybXMiLCJzdGFydF91cmwiOiIvIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI2ZmZmZmZiIsInRoZW1lX2NvbG9yIjoiIzIzMUYyMCIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlNalFpSUdobGFXZG9kRDBpTWpRaUlIWnBaWGRDYjNnOUlqQWdNQ0F5TkNBeU5DSWdabWxzYkQwaUl6RmxOREJoWmlJK1BHTnBjbU5zWlNCamVEMGlNVElpSUdONVBTSXhNaUlnY2owaU9TSWdabWxzYkQwaUkyWm1abVptWmlJdlBqd3ZjM1puUGc9PSIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9zdmcreG1sIn1dfQ==">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #AD974F;      /* Dark gold */
+            --secondary-color: #AD974F;    /* Light gold */
+            --accent-color: #AD974F;       /* Gold accent */
+            --light-color: #EAEAEA;        /* Light grey */
+            --dark-color: #231F20;         /* Charcoal */
+            --success-color: #28a745;      /* Keep original green */
+            --warning-color: #ffc107;      /* Keep original warning */
+            --danger-color: #dc3545;       /* Keep original danger */
+            --white: #FFFFFF;              /* Pure white */
+            --gold-dark: #8E793E;          /* Team Mindlink dark gold */
+            --gold: #AD974F;               /* Team Mindlink gold */
+            --charcoal: #231F20;           /* Team Mindlink charcoal */
+            --light-grey: #EAEAEA;         /* Team Mindlink light grey */
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --background-light: #f8fafc;
+            --border-light: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--background-light);
+        }
+
+        /* Header Styles */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--charcoal);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 160px);
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--charcoal), var(--gold-dark));
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        /* Compliance Alert */
+        .compliance-alert {
+            background: linear-gradient(135deg, var(--danger-color), #c82333);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .compliance-alert h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .compliance-alert p {
+            opacity: 0.95;
+        }
+
+        /* General Reminders */
+        .general-reminders {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--gold);
+        }
+
+        .general-reminders h3 {
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .reminder-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .reminder-list li {
+            background: var(--light-grey);
+            margin-bottom: 0.75rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .reminder-list li::before {
+            content: "✅";
+            font-size: 1.2rem;
+            margin-top: 0.1rem;
+        }
+
+        /* Transaction Categories */
+        .transaction-category {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--gold);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .category-title {
+            color: var(--charcoal);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Subcategories */
+        .subcategory {
+            background: var(--light-grey);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--gold);
+        }
+
+        .subcategory h4 {
+            color: var(--charcoal);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cdd-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .cdd-not-required {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .cdd-required {
+            background: var(--warning-color);
+            color: var(--charcoal);
+        }
+
+        .cdd-enhanced {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        /* Document Lists */
+        .document-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .document-list li {
+            background: var(--white);
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .document-list li::before {
+            content: "📄";
+            font-size: 1rem;
+        }
+
+        /* Key Terms Section */
+        .key-terms {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .key-terms h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .term-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .term-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Forms Section */
+        .forms-category {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--gold);
+        }
+
+        .forms-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .form-item {
+            background: var(--light-grey);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .form-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(142, 121, 62, 0.1);
+        }
+
+        .form-info {
+            flex: 1;
+        }
+
+        .form-name {
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 0.25rem;
+        }
+
+        .form-description {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .download-btn {
+            background: var(--gold);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            background: var(--gold-dark);
+        }
+
+        /* Important Links */
+        .important-links {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--gold);
+        }
+
+        .important-links h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light-grey);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            color: var(--charcoal);
+            transition: all 0.3s ease;
+        }
+
+        .link-item:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* Final Notes */
+        .final-notes {
+            background: linear-gradient(135deg, var(--charcoal), var(--gold-dark));
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .final-notes h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .notes-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .notes-list li {
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 0.75rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--charcoal);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .forms-list {
+                grid-template-columns: 1fr;
+            }
+
+            .form-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Submission Checklist</h1>
+            <p><strong>CEA's PMLPFTF 2021 Regulations</strong> (Updated 30 June 2025)</p>
+            <p>Professional Real Estate Compliance Forms & Documentation</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Compliance Alert -->
+            <div class="compliance-alert">
+                <h3>⚠️ MANDATORY COMPLIANCE</h3>
+                <p>Failure to comply may result in delays in submission, processing, and commission disbursement.</p>
+            </div>
+
+            <!-- General Reminders -->
+            <div class="general-reminders">
+                <h3>🔄 GENERAL REMINDERS FOR ALL CASES</h3>
+                <ul class="reminder-list">
+                    <li>Use <strong>CEA-prescribed forms</strong> (Salesperson Agreement, Commission Agreement)</li>
+                    <li>Always perform <strong>Customer Due Diligence (CDD)</strong> before any agreement is signed</li>
+                    <li>Upload/submit all files to your division leader or compliance portal</li>
+                    <li>Keep <strong>copies of documents for minimum 5 years</strong></li>
+                    <li><strong>Screen all clients</strong> using MAS/UN/MHA sanction lists & assess PEP risks</li>
+                </ul>
+            </div>
+
+            <!-- Rental Transactions -->
+            <div class="transaction-category">
+                <div class="category-header">
+                    <div class="category-number">1️⃣</div>
+                    <h2 class="category-title">RENTAL TRANSACTIONS</h2>
+                </div>
+
+                <!-- HDB Rentals -->
+                <div class="subcategory">
+                    <h4>📍 A. HDB Rentals (Whole Flat / Room) <span class="cdd-status cdd-not-required">NO CDD REQUIRED from 1 July 2025</span></h4>
+                    <p><em>No need for AML screening unless suspicious activity is flagged.</em></p>
+                    <ul class="document-list">
+                        <li>Tenancy Agreement (TA)</li>
+                        <li>CEA Prescribed Form / Commission Form</li>
+                        <li>Annex A (Checklist for Immigration Act & Women's Charter)</li>
+                        <li>Inventory List</li>
+                        <li>Stamp Certificate</li>
+                        <li>NRIC/Pass (Landlord & Tenant)</li>
+                    </ul>
+                </div>
+
+                <!-- Private Residential Rental -->
+                <div class="subcategory">
+                    <h4>📍 B. Private Residential Rental <span class="cdd-status cdd-required">CDD REQUIRED</span></h4>
+                    <ul class="document-list">
+                        <li>Tenancy Agreement (TA)</li>
+                        <li>CEA Prescribed Form / Commission Form</li>
+                        <li>Annex A (Immigration/Women's Charter Checklist)</li>
+                        <li>Inventory List</li>
+                        <li>Stamp Certificate</li>
+                        <li>NRIC/Passport Copy (Landlord & Tenant)</li>
+                        <li><strong>CDD Screening</strong> (Complete Designated Customer Particulars Form)</li>
+                        <li>If entity involved: ACRA Bizfile & Beneficial Ownership Details</li>
+                        <li>If high-risk: Perform <strong>ECDD</strong></li>
+                    </ul>
+                </div>
+
+                <!-- Commercial/Industrial Rental -->
+                <div class="subcategory">
+                    <h4>📍 C. Commercial / Industrial Rental <span class="cdd-status cdd-enhanced">CDD & AML SCREENING</span></h4>
+                    <ul class="document-list">
+                        <li>Tenancy Agreement (TA)</li>
+                        <li>CEA Prescribed Form / Commission Form</li>
+                        <li>Inventory List</li>
+                        <li>Stamp Certificate</li>
+                        <li>NRIC/Passport/ACRA for all parties</li>
+                        <li><strong>CDD & AML Screening</strong></li>
+                        <li>Designated Customer Particulars Form</li>
+                        <li>If high-risk or PEP: <strong>ECDD Required</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sales/Purchase Transactions -->
+            <div class="transaction-category">
+                <div class="category-header">
+                    <div class="category-number">2️⃣</div>
+                    <h2 class="category-title">SALES / PURCHASE TRANSACTIONS</h2>
+                </div>
+
+                <!-- HDB Resale -->
+                <div class="subcategory">
+                    <h4>📍 A. HDB Resale <span class="cdd-status cdd-required">CDD & AML SCREENING</span></h4>
+                    <ul class="document-list">
+                        <li>Option to Purchase (OTP)</li>
+                        <li>CEA Prescribed Form / Commission Form</li>
+                        <li>NRIC/Pass of Seller & Buyer</li>
+                        <li><strong>Designated Customer Particulars Form</strong></li>
+                        <li><strong>CDD & AML Screening</strong></li>
+                        <li>If buyer/seller is suspicious: file STR (Suspicious Transaction Report)</li>
+                    </ul>
+                </div>
+
+                <!-- Private Residential -->
+                <div class="subcategory">
+                    <h4>📍 B. Private Residential Resale / New Sale <span class="cdd-status cdd-required">CDD SCREENING</span></h4>
+                    <ul class="document-list">
+                        <li>OTP or Developer's Sales Form</li>
+                        <li>CEA Prescribed Form / Commission Form</li>
+                        <li>NRIC/Passport</li>
+                        <li><strong>Designated Customer Particulars Form</strong></li>
+                        <li><strong>CDD Screening</strong></li>
+                        <li>ACRA (if buyer/seller is a legal entity)</li>
+                        <li>BO (Beneficial Owner) details</li>
+                        <li>If flagged: <strong>ECDD including source of funds/wealth</strong></li>
+                    </ul>
+                </div>
+
+                <!-- Commercial/Industrial Sale -->
+                <div class="subcategory">
+                    <h4>📍 C. Commercial / Industrial Sale <span class="cdd-status cdd-enhanced">CDD & ECDD</span></h4>
+                    <ul class="document-list">
+                        <li>Option to Purchase (OTP)</li>
+                        <li>CEA Prescribed Form / Commission Form</li>
+                        <li>NRIC/Passport</li>
+                        <li>ACRA (if applicable)</li>
+                        <li>Designated Customer Particulars Form</li>
+                        <li><strong>CDD Screening</strong></li>
+                        <li>BO details</li>
+                        <li>If high-risk: <strong>ECDD measures</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- UCPDD -->
+            <div class="transaction-category">
+                <div class="category-header">
+                    <div class="category-number">3️⃣</div>
+                    <h2 class="category-title">UCPDD (Unrepresented Counterparty Due Diligence)</h2>
+                </div>
+
+                <div class="subcategory">
+                    <h4>If the <strong>other party has no agent</strong>, perform UCPDD</h4>
+                    <ul class="document-list">
+                        <li>Verify UCP's identity (NRIC/Passport/ACRA)</li>
+                        <li>Screen UCP as per CDD</li>
+                        <li>If entity: get BO & ACRA info</li>
+                        <li>File and submit documentation as per CDD process</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Key Terms -->
+            <div class="key-terms">
+                <h3>⚠️ KEY TERMS TO REMEMBER</h3>
+                <div class="terms-grid">
+                    <div class="term-item">
+                        <strong>CDD</strong>
+                        Customer Due Diligence – for every client before a deal is signed.
+                    </div>
+                    <div class="term-item">
+                        <strong>ECDD</strong>
+                        Enhanced CDD – for high-risk cases (PEPs, offshore entities, suspicious behavior).
+                    </div>
+                    <div class="term-item">
+                        <strong>BO</strong>
+                        Beneficial Owner – individual who ultimately owns or controls the entity.
+                    </div>
+                    <div class="term-item">
+                        <strong>STR</strong>
+                        Suspicious Transaction Report – file via EA if you suspect illegal activity.
+                    </div>
+                    <div class="term-item">
+                        <strong>UCP</strong>
+                        Unrepresented Counterparty – a DIY party; due diligence still applies.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forms Download Section -->
+            <div class="forms-category">
+                <div class="category-header">
+                    <div class="category-number">📋</div>
+                    <h2 class="category-title">DOWNLOAD COMPLIANCE FORMS</h2>
+                </div>
+
+                <div class="forms-list">
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form A1</div>
+                            <div class="form-description">Individual Landlord/Tenant/Client</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" target="_blank" class="download-btn">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form A2</div>
+                            <div class="form-description">Entity Client</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" target="_blank" class="download-btn">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form A3</div>
+                            <div class="form-description">Individual Client Acting on Behalf</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" target="_blank" class="download-btn">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form A4</div>
+                            <div class="form-description">Legal Person Client Acting on Behalf</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" target="_blank" class="download-btn">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form B</div>
+                            <div class="form-description">Risk Screening Checklist</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" target="_blank" class="download-btn">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form C</div>
+                            <div class="form-description">Enhanced Due Diligence (High-Risk)</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" target="_blank" class="download-btn">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form U1-U6</div>
+                            <div class="form-description">Unrepresented Counterparty Forms</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" target="_blank" class="download-btn">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form D</div>
+                            <div class="form-description">Ongoing Due Diligence</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" target="_blank" class="download-btn">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Important Links -->
+            <div class="important-links">
+                <h3>🔗 Important Links & Resources</h3>
+                
+                <a href="https://eservices1.police.gov.sg/phub/e

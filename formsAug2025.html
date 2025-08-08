@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms | Mindlink Groups</title>
+    <meta name="description" content="Download real estate compliance forms and documents required for property transactions">
+    <meta name="theme-color" content="#1e40af">
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWluZGxpbmsgRm9ybXMiLCJzaG9ydF9uYW1lIjoiRm9ybXMiLCJzdGFydF91cmwiOiIvIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI2ZmZmZmZiIsInRoZW1lX2NvbG9yIjoiIzFlNDBhZiIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlNalFpSUdobGFXZG9kRDBpTWpRaUlIWnBaWGRDYjNnOUlqQWdNQ0F5TkNBeU5DSWdabWxzYkQwaUl6RmxOREJoWmlJK1BHTnBjbU5zWlNCamVEMGlNVElpSUdONVBTSXhNaUlnY2owaU9TSWdabWxzYkQwaUkyWm1abVptWmlJdlBqd3ZjM1puUGc9PSIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9zdmcreG1sIn1dfQ==">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #231F20;
+            --secondary-blue: #8E793E;
+            --accent-gold: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --background-light: #f8fafc;
+            --white: #ffffff;
+            --border-light: #231F20;
+            --success-green: #EAEAEA;
+            --warning-orange: #dc3545;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+        }
+
+        /* Header Styles */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 160px);
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Forms Categories */
+        .forms-category {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .category-title {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .forms-required {
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .forms-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .form-item {
+            background: var(--background-light);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .form-item:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+        }
+
+        .form-info {
+            flex: 1;
+        }
+
+        .form-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .form-description {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .download-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            background: var(--secondary-blue);
+        }
+
+        .download-btn.pdf {
+            background: var(--warning-orange);
+        }
+
+        .download-btn.pdf:hover {
+            background: #AD974F;
+        }
+
+        /* Important Links Section */
+        .important-links {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        .important-links h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--background-light);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .link-item:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-gold);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* Help Section */
+        .help-section {
+            background: linear-gradient(135deg, var(--success-green), #8E793E);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .help-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .help-section p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .contact-btn {
+            background: white;
+            color: var(--success-green);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .forms-list {
+                grid-template-columns: 1fr;
+            }
+
+            .form-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .category-header {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+        }
+
+        /* Download Animation */
+        @keyframes downloadPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .download-btn:active {
+            animation: downloadPulse 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Submission Checklist as On Aug 2025</h1>
+            <p>Download all required compliance forms and documentation for property transactions</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Rental Transaction Forms -->
+            <div class="forms-category">
+                <div class="category-header">
+                    <div class="category-icon">🏠</div>
+                    <h2 class="category-title">Rental Transaction (Non-HDB)</h2>
+                </div>
+                <div class="forms-required">Forms Required:</div>
+                <div class="forms-list">
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form A1</div>
+                            <div class="form-description">Individual Landlord/Tenant</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_A1_Individual.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form A2</div>
+                            <div class="form-description">Entity Landlord/Tenant</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_A2_Entity.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form A3</div>
+                            <div class="form-description">Individual Client act on behalf</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_A3_Individual_Behalf.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form A4</div>
+                            <div class="form-description">Legal Person client act on behalf</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_A4_Legal_Person.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form B</div>
+                            <div class="form-description">Risk Screening Checklist</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_B_Risk_Screening.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form C</div>
+                            <div class="form-description">High-risk screening (e.g., foreign PEPs)</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_C_High_Risk.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form U1</div>
+                            <div class="form-description">Unrepresented Landlord/Tenant</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_U1_Unrepresented.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form U5</div>
+                            <div class="form-description">UCP Screening Checklist</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_U5_UCP_Screening.pdf')">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sales & Purchase Transaction Forms -->
+            <div class="forms-category">
+                <div class="category-header">
+                    <div class="category-icon">💼</div>
+                    <h2 class="category-title">Sales & Purchase Transactions</h2>
+                </div>
+                <div class="forms-required">Forms Required:</div>
+                <div class="forms-list">
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form A1</div>
+                            <div class="form-description">Individual Client</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_A1_Individual_SP.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form A2</div>
+                            <div class="form-description">Entity Client</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_A2_Entity_SP.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form A3</div>
+                            <div class="form-description">Individual Client Act on behalf</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_A3_Individual_SP.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form A4</div>
+                            <div class="form-description">Legal Person Client act on behalf</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_A4_Legal_SP.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form B</div>
+                            <div class="form-description">Risk Screening Checklist</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_B_Risk_SP.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form C</div>
+                            <div class="form-description">Enhanced Due Diligence (if high-risk)</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_C_Enhanced_DD.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form U1/U2</div>
+                            <div class="form-description">Unrepresented Buyer/Seller or Entity</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_U1_U2_Unrepresented.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form U5</div>
+                            <div class="form-description">UCP Screening Checklist</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_U5_UCP_SP.pdf')">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- High-Risk Transactions -->
+            <div class="forms-category">
+                <div class="category-header">
+                    <div class="category-icon">⚠️</div>
+                    <h2 class="category-title">High-Risk Transactions</h2>
+                </div>
+                <div class="forms-required">Additional Forms:</div>
+                <div class="forms-list">
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form C</div>
+                            <div class="form-description">Enhanced Due Diligence</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_C_Enhanced.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form D</div>
+                            <div class="form-description">Ongoing Monitoring for PEPs</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_D_Monitoring.pdf')">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unrepresented Counterparties -->
+            <div class="forms-category">
+                <div class="category-header">
+                    <div class="category-icon">👤</div>
+                    <h2 class="category-title">Unrepresented Counterparties (DIY Transaction)</h2>
+                </div>
+                <div class="forms-required">Forms Required:</div>
+                <div class="forms-list">
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form U1</div>
+                            <div class="form-description">Individual UCP</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_U1_Individual_UCP.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form U2</div>
+                            <div class="form-description">Entity UCP</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_U2_Entity_UCP.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form U3</div>
+                            <div class="form-description">UCP Acting for Individual</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_U3_UCP_Individual.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form U4</div>
+                            <div class="form-description">UCP Acting for Entity</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_U4_UCP_Entity.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form U5</div>
+                            <div class="form-description">Screening Checklist</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_U5_Screening.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form U6</div>
+                            <div class="form-description">Enhanced UCP Due Diligence (if high-risk)</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_U6_Enhanced.pdf')">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ongoing Monitoring -->
+            <div class="forms-category">
+                <div class="category-header">
+                    <div class="category-icon">📊</div>
+                    <h2 class="category-title">Ongoing Monitoring (Existing Clients)</h2>
+                </div>
+                <div class="forms-required">Forms Required:</div>
+                <div class="forms-list">
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form D</div>
+                            <div class="form-description">Ongoing Due Diligence</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_D_Ongoing.pdf')">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suspicious Activity Reports -->
+            <div class="forms-category">
+                <div class="category-header">
+                    <div class="category-icon">🚨</div>
+                    <h2 class="category-title">Suspicious Activity Reports (STRS)</h2>
+                </div>
+                <div class="forms-required">Forms Required:</div>
+                <div class="forms-list">
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form B</div>
+                            <div class="form-description">Risk Assessment Form</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_B_STRS.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Form U5</div>
+                            <div class="form-description">Attach screening results</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Form_U5_STRS.pdf')">Download PDF</a>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-info">
+                            <div class="form-name">Internal STR Memo</div>
+                            <div class="form-description">Optional internal documentation</div>
+                        </div>
+                        <a href="https://teammindlink2025.github.io/assets/formA1.pdf" class="download-btn" onclick="downloadForm('Internal_STR_Memo.pdf')">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Important Links -->
+            <div class="important-links">
+                <h3>🔗 Important Links & Resources</h3>
+                
+                <a href="https://eservices1.police.gov.sg/phub/eservices/landingpage/stro-singpass" class="link-item" target="_blank">
+                    <div class="link-icon">🏛️</div>
+                    <div>
+                        <div style="font-weight: 600;">SONAR Submission Portal</div>
+                        <div style="font-size: 0.9rem; color:#AD974F;">Submit suspicious transaction reports here</div>
+                    </div>
+                </a>
+
+                <a href="https://www.cea.gov.sg/docs/default-source/default-document-library/guide-on-estate-agents-(pmlpftf)-regulations-2021_30june2025.pdf" class="link-item" target="_blank">
+                    <div class="link-icon">📖</div>
+                    <div>
+                        <div style="font-weight: 600;">CEA Compliance Guide</div>
+                        <div style="font-size: 0.9rem; color: var(--light grey);">Guide on Estate Agents Prevention of Money Laundering Regulations 2021</div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Help Section -->
+            <div class="help-section">
+                <h3>Need Help with Forms?</h3>
+                <p>Our compliance team is here to assist you with any questions about form completion and submission requirements.</p>
+                <a href="#" class="contact-btn" onclick="showContactModal()">Contact Support Team</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mindlink Groups. All rights reserved. Professional Real Estate Services in Singapore.</p>
+        </div>
+    </footer>
+
+    <script>
+        function downloadForm(filename) {
+            // In a real implementation, this would trigger actual file download
+            // For demo purposes, we'll show a notification
+            showNotification(`Downloading ${filename}...`, 'success');
+            
+            // Simulate download delay
+            setTimeout(() => {
+                showNotification(`${filename} downloaded successfully!`, 'success');
+            }, 1500);
+        }
+
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? 'var(--success-green)' : 'var(--primary-blue)'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                max-width: 300px;
+                font-weight: 600;
