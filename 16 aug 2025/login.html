@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Real Estate Compliance</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-primary">Real Estate</span>
+                <span class="brand-secondary">Compliance Hub</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="public-info.html">AML/CFT Guide</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="login-card">
+                        <h2>Login to Your Account</h2>
+                        <p>Access your compliance dashboard and tools</p>
+                        
+                        <!-- Google Sign-In Buttons -->
+                        <div class="social-login">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="btn-google" onclick="simulateLogin('agency')">
+                                        <img src="assets/google-icon.png" alt="Google">
+                                        <span>Sign in as Agency</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="btn-google" onclick="simulateLogin('sales')">
+                                        <img src="assets/google-icon.png" alt="Google">
+                                        <span>Sign in as Salesperson</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="divider">
+                            <span>OR</span>
+                        </div>
+                        
+                        <!-- Traditional Login Form -->
+                        <div class="login-form">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" class="form-control" placeholder="Enter your username">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="remember" class="form-check-input">
+                                <label for="remember" class="form-check-label">Remember me</label>
+                            </div>
+                            <button class="btn btn-primary btn-block" onclick="traditionalLogin()">Login</button>
+                            <div class="text-center mt-3">
+                                <a href="#">Forgot password?</a>
+                            </div>
+                        </div>
+                        
+                        <div class="demo-credentials">
+                            <p><strong>Demo Credentials:</strong></p>
+                            <p>Agency: agency / password</p>
+                            <p>Salesperson: sales / password</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Real Estate Compliance Hub</h4>
+                    <p>A comprehensive AML/CFT compliance platform for Singapore's real estate professionals.</p>
+                </div>
+                <div class="col-md-2">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="public-info.html">AML/CFT Guide</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contact</h5>
+                    <p>Email: info@realestatecompliance.sg</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Follow Us</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Real Estate Compliance Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        function simulateLogin(role) {
+            // Show loading state
+            $('.btn-google').addClass('disabled');
+            $('.btn-google span').text('Signing in...');
+            
+            // Simulate Google Sign-In delay
+            setTimeout(function() {
+                if (role === 'agency') {
+                    window.location.href = 'agency-dashboard.html';
+                } else {
+                    window.location.href = 'sales-dashboard.html';
+                }
+            }, 1500);
+        }
+        
+        function traditionalLogin() {
+            const username = $('#username').val();
+            const password = $('#password').val();
+            
+            if (username === 'agency' && password === 'password') {
+                window.location.href = 'agency-dashboard.html';
+            } else if (username === 'sales' && password === 'password') {
+                window.location.href = 'sales-dashboard.html';
+            } else {
+                alert('Invalid credentials. Please try again or use the demo credentials provided.');
+            }
+        }
+    </script>
+</body>
+</html>
